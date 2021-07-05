@@ -5,6 +5,8 @@ class StringCharClass:
     equal = "равно"
     digital = "цифра"
     semicolon = "тчкзпт"
+    symbol = "знак"
+    error = "ошибка"
 
     #Этот метод определяет какой именно класс у символа, используем мы его в функции транслитерации
     def RecognizeCharacter(self, char):
@@ -14,7 +16,9 @@ class StringCharClass:
             char == ';': stringChar.semicolon,
             char == '=': stringChar.equal,
             char.isalpha(): stringChar.letter,
-            char.isnumeric(): stringChar.digital
+            char.isnumeric(): stringChar.digital,
+            char == '+' or char == '-': stringChar.symbol,
+            True: stringChar.error
         }[True]
 
 #Блок транслитерации, первый в списке
@@ -46,5 +50,3 @@ def LexicalBlock(tokenChain):
 
 
 print(LexicalBlock(TransliterationBlock(input())))
-#Some checkout
-print(5)
