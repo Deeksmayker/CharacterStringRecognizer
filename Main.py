@@ -1,4 +1,7 @@
 #В этом классе хранятся все возможные классы отдельных символов, то есть если в блоке транслитерации мы видим букву то присваиваем ему letter и так далее.
+from typing import DefaultDict
+
+
 class StringCharClass:
     letter = "буква"
     space = "пробел"
@@ -11,15 +14,15 @@ class StringCharClass:
     #Этот метод определяет какой именно класс у символа, используем мы его в функции транслитерации
     def RecognizeCharacter(self, char):
         stringChar = StringCharClass()
-        return {
-            char == ' ': stringChar.space,
-            char == ';': stringChar.semicolon,
-            char == '=': stringChar.equal,
-            char.isalpha(): stringChar.letter,
-            char.isnumeric(): stringChar.digital,
-            char == '+' or char == '-': stringChar.symbol,
-            True: stringChar.error
-        }[True]
+
+        if char == ' ': return stringChar.space,
+        if char == ';': return stringChar.semicolon,
+        if char == '=': return stringChar.equal,
+        if char.isalpha(): return stringChar.letter,
+        if char.isnumeric(): return stringChar.digital,
+        if char == '+' or char == '-': return stringChar.symbol,
+        
+        return stringChar.error
 
 #Блок транслитерации, первый в списке
 def TransliterationBlock(str):
@@ -49,4 +52,4 @@ def LexicalBlock(tokenChain):
     return resultTokenChain
 
 
-print(LexicalBlock(TransliterationBlock(input())))
+print(TransliterationBlock(input()))
