@@ -1,7 +1,6 @@
+import re
+
 #В этом классе хранятся все возможные классы отдельных символов, то есть если в блоке транслитерации мы видим букву то присваиваем ему letter и так далее.
-from typing import DefaultDict
-
-
 class StringCharClass:
     letter = "буква"
     space = "пробел"
@@ -15,12 +14,14 @@ class StringCharClass:
     def RecognizeCharacter(self, char):
         stringChar = StringCharClass()
 
-        if char == ' ': return stringChar.space,
-        if char == ';': return stringChar.semicolon,
-        if char == '=': return stringChar.equal,
-        if char.isalpha(): return stringChar.letter,
-        if char.isnumeric(): return stringChar.digital,
-        if char == '+' or char == '-': return stringChar.symbol,
+        if re.search(r'[а-яА-ЯёЁ]', char): return stringChar.error
+
+        if char == ' ': return stringChar.space
+        if char == ';': return stringChar.semicolon
+        if char == '=': return stringChar.equal
+        if char.isalpha(): return stringChar.letter
+        if char.isnumeric(): return stringChar.digital
+        if char == '+' or char == '-': return stringChar.symbol
         
         return stringChar.error
 
