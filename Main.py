@@ -47,4 +47,4 @@ def LexicalBlock(tokenChain):
 
 print(LexicalBlock(TransliterationBlock(input())))
 #Some checkout
-print(3)
+print(5)
