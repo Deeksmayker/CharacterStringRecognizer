@@ -10,7 +10,7 @@ class StringCharClasses:
     error = "ошибка"
 
     #Этот метод определяет какой именно класс у символа, используем мы его в функции транслитерации
-    def RecognizeCharacter(self, char):
+    def RecognizeCharacter(char):
         stringChar = StringCharClasses()
 
         if re.search(r'[а-яА-ЯёЁ]', char): return stringChar.error
@@ -38,12 +38,11 @@ class InputLanguageCharClass:
 
 #Блок транслитерации, первый в списке
 def TransliterationBlock(str):
-    #Создаем массив, в который будем складывать все символы с их классами и на 24 строке создаем экземпляр класса в котором находятся виды символов
+    #Создаем массив, в который будем складывать все символы с их классами
     tokenChain = []
-    stringChar = StringCharClasses()
     #Тут проходимся по символам переданой строки, в charClass пихаем класс текущего символа, на 28 в массив засовываем сам символ и его класс на одну позицию(это называется если че кортеж)
     for char in str:
-        charClass = stringChar.RecognizeCharacter(char)
+        charClass = StringCharClasses.RecognizeCharacter(char)
         tokenChain.append((char, charClass))
     return tokenChain
 
@@ -63,4 +62,4 @@ def LexicalBlock(tokenChain):
     return resultTokenChain
 
 
-print(LexicalBlock(TransliterationBlock(input())))
+print(TransliterationBlock(input()))
