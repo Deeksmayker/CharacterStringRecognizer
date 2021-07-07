@@ -8,21 +8,21 @@ class StringCharClasses:
     semicolon = "тчкзпт"
     symbol = "знак"
     error = "ошибка"
+    bracket = "скобка"
+    squareBracket = "квадратная скобка"
 
     #Этот метод определяет какой именно класс у символа, используем мы его в функции транслитерации
     def RecognizeCharacter(char):
-        stringChar = StringCharClasses()
-
-        if re.search(r'[а-яА-ЯёЁ]', char): return stringChar.error
-
-        if char == ' ': return stringChar.space
-        if char == ';': return stringChar.semicolon
-        if char == '=': return stringChar.equal
-        if char.isalpha(): return stringChar.letter
-        if char.isnumeric(): return stringChar.digital
-        if char == '+' or char == '-': return stringChar.symbol
+        if char == ' ': return StringCharClasses.space
+        if char == ';': return StringCharClasses.semicolon
+        if char == '=': return StringCharClasses.equal
+        if char.isalpha() and re.search(r'[a-zA-Z]', char): return StringCharClasses.letter
+        if char.isnumeric(): return StringCharClasses.digital
+        if char == '+' or char == '-': return StringCharClasses.symbol
+        if char == '(' or char == ')': return StringCharClasses.bracket
+        if char == '[' or char == ']': return StringCharClasses.squareBracket
         
-        return stringChar.error
+        return StringCharClasses.error
 
 class InputLanguageCharClass:
     identifer = "ИДЕНТЕФИКАТОР"
