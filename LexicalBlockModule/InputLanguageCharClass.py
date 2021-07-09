@@ -4,20 +4,20 @@ class InputLanguageCharClass:
     identifer = "ИДЕНТЕФИКАТОР"
     begin = "НАЧ"
     keyWord = "КЛСЛОВО"
-    space1 = "ПРОБЕЛ1"
     name = "ИМЯ"
-    space2 = "ПРОБЕЛ2"
     equal = "РАВНО"
-    space3 = "ПРОБЕЛ3"
     sign = "ЗНАК"
-    space4 = "ПРОБЕЛ4"
     integer = "ЦЕЛОЕ"
-    space51 = "ПРОБЕЛ51"
     logical = "ЛОГКОНСТ"
-    space52 = "ПРОБЛЕ52"
     semicolon = "ТЧКЗПТ"
-    space6 = "ПРОБЕЛ6"
     error = "Е"
+    space1 = "ПРОБЕЛ1"
+    space2 = "ПРОБЕЛ2"
+    space3 = "ПРОБЕЛ3"
+    space4 = "ПРОБЕЛ4"
+    space51 = "ПРОБЕЛ51"
+    space52 = "ПРОБЛЕ52"
+    space6 = "ПРОБЕЛ6"
 
     def IsPossibleTokenName(charClass, previousCharClass, resultTokenChain, currentToken):
         tokenArrayLength = len(resultTokenChain)
@@ -25,4 +25,8 @@ class InputLanguageCharClass:
         and currentToken[0].isalpha() and charClass == StringCharClasses.digital)
 
     def RecognizeLexicalTokenClass(tokenName):
-        a =3
+        if tokenName == StringCharClasses.semicolon: return InputLanguageCharClass.semicolon
+        if tokenName == StringCharClasses.equal: return InputLanguageCharClass.equal
+        if tokenName == StringCharClasses.sign: return InputLanguageCharClass.sign
+
+        
