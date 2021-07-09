@@ -30,10 +30,10 @@ class InputLanguageCharClass:
     integer = "ЦЕЛОЕ"
     semicolon = "тчкзпт"
 
-    def IsPossibleIdentifierName(charClass, previousCharClass, resultTokenChain):
+    def IsPossibleTokenName(charClass, previousCharClass, resultTokenChain, currentToken):
         tokenArrayLength = len(resultTokenChain)
-        return charClass == previousCharClass or (tokenArrayLength >= 2 and resultTokenChain[tokenArrayLength - 2][0] == "const"
-        and previousCharClass == StringCharClasses.letter and charClass == StringCharClasses.digital)
+        return charClass == previousCharClass or (tokenArrayLength >= 1 and resultTokenChain[tokenArrayLength - 1][0] == "const"
+        and currentToken[0].isalpha() and charClass == StringCharClasses.digital)
 
 
 #Блок транслитерации, первый в списке
@@ -47,19 +47,23 @@ def TransliterationBlock(str):
     return tokenChain
 
 def LexicalBlock(tokenChain):
-    resultTokenChain = [("", "")]  
+    resultTokenChain = []  
     previousCharClass = tokenChain[0][1]
+    currentToken = ""
 
     for char in tokenChain: 
-        if InputLanguageCharClass.IsPossibleIdentifierName(char[1], previousCharClass, resultTokenChain):
-            resultTokenChain[len(resultTokenChain) - 1][0] += char[0]
+        if InputLanguageCharClass.IsPossibleTokenName(char[1], previousCharClass, resultTokenChain, currentToken):
+            currentToken += char[0]
         
         elif char[1] != StringCharClasses.space:
-             resultTokenChain.append((char[0], ""))
+             resultTokenChain.append((currentToken, ""))
+             currentToken = char[0]
 
         previousCharClass = char[1]        
         
+    resultTokenChain.append((currentToken, ""))
+
     return resultTokenChain
 
 
-print(TransliterationBlock(input()))
+print(LexicalBlock(TransliterationBlock(input())))
