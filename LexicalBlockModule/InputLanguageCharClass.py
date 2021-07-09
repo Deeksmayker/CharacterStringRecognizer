@@ -1,4 +1,4 @@
-from ..TransliterationModule.StringCharTypes import StringCharClasses
+from TransliterationModule.StringCharTypes import StringCharClasses
 
 class InputLanguageCharClass:
     identifer = "ИДЕНТЕФИКАТОР"
@@ -23,3 +23,6 @@ class InputLanguageCharClass:
         tokenArrayLength = len(resultTokenChain)
         return charClass == previousCharClass or (tokenArrayLength >= 1 and resultTokenChain[tokenArrayLength - 1][0] == "const"
         and currentToken[0].isalpha() and charClass == StringCharClasses.digital)
+
+    def RecognizeLexicalTokenClass(tokenName):
+        a =3
