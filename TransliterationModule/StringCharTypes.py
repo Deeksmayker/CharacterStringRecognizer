@@ -13,6 +13,7 @@ class StringCharClasses:
     more = "больше"
     less = "меньше"
     hexadecimal = "шестнадцатиричный знак"
+    comma = "запятая"
 
     #Этот метод определяет какой именно класс у символа, используем мы его в функции транслитерации
     def RecognizeCharacter(char):
@@ -27,5 +28,6 @@ class StringCharClasses:
         if char == '>': return StringCharClasses.more
         if char == '<': return StringCharClasses.less
         if char == '$': return StringCharClasses.hexadecimal
+        if char == ',': return StringCharClasses.comma
         
         return StringCharClasses.error

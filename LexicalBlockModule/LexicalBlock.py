@@ -11,11 +11,11 @@ def LexicalBlock(tokenChain):
             currentToken += char[0]
         
         elif char[1] != StringCharClasses.space:
-             resultTokenChain.append((currentToken, ""))
+             resultTokenChain.append((currentToken, InputLanguageCharClass.RecognizeLexicalTokenClass(currentToken)))
              currentToken = char[0]
 
         previousCharClass = char[1]        
         
-    resultTokenChain.append((currentToken, ""))
+    resultTokenChain.append((currentToken, InputLanguageCharClass.RecognizeLexicalTokenClass(currentToken)))
 
     return resultTokenChain
