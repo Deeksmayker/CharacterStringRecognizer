@@ -2,10 +2,11 @@ from os import read
 from TransliterationModule.TransliterationBlock import TransliterationBlock
 from LexicalBlockModule.LexicalBlock import LexicalBlock
 
-#input = open("INPUT.txt", 'r').read()
-#output = open("OUTPUT.txt", 'w')
+input = open("INPUT.txt", 'r').read()
+output = open("OUTPUT.txt", 'w')
 
-#transliteration = TransliterationBlock(input)
-#lexical = LexicalBlock(transliteration)\
+transliteration = TransliterationBlock(input)
+lexical = LexicalBlock(transliteration)
 
-print(LexicalBlock(TransliterationBlock(input())))
+print("Блок транслитерации - ", transliteration, "\n")
+print("Лексический блок - ", lexical)

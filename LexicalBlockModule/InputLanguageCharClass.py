@@ -10,6 +10,7 @@ class InputLanguageCharClass:
     integer = "ЦЕЛОЕ"
     logical = "ЛОГКОНСТ"
     semicolon = "ТЧКЗПТ"
+    comparison = "ОПЕРАТОР СРАВНЕНИЯ"
     error = "Е"
     space1 = "ПРОБЕЛ1"
     space2 = "ПРОБЕЛ2"
@@ -21,12 +22,17 @@ class InputLanguageCharClass:
 
     def IsPossibleTokenName(charClass, previousCharClass, resultTokenChain, currentToken):
         tokenArrayLength = len(resultTokenChain)
-        return charClass == previousCharClass or (tokenArrayLength >= 1 and resultTokenChain[tokenArrayLength - 1][0] == "const"
-        and currentToken[0].isalpha() and charClass == StringCharClasses.digital)
+        return (charClass == previousCharClass
+        or (tokenArrayLength >= 1 and resultTokenChain[tokenArrayLength - 1][0] == "if" and currentToken[0].isalpha() and charClass == StringCharClasses.digital)
+        or ((previousCharClass == StringCharClasses.more or previousCharClass == StringCharClasses.less) and charClass == StringCharClasses.equal)
+        or (previousCharClass == StringCharClasses.less and charClass == StringCharClasses.more)
+        or StringCharClasses.RecognizeCharacter(currentToken[0]) == StringCharClasses.hexadecimal
+        and charClass != StringCharClasses.space and previousCharClass != StringCharClasses.space)
 
     def RecognizeLexicalTokenClass(tokenName):
         if tokenName == StringCharClasses.semicolon: return InputLanguageCharClass.semicolon
         if tokenName == StringCharClasses.equal: return InputLanguageCharClass.equal
         if tokenName == StringCharClasses.sign: return InputLanguageCharClass.sign
+        if tokenName.isnumeric(): return InputLanguageCharClass.integer
 
         
