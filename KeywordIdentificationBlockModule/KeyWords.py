@@ -1,3 +1,4 @@
+#ну тут хранятся все возможные ключевые слова
 class KeyWords:
     keyWhile = "КЛСЛОВО_WHILE"
     keyDo = "КЛСЛОВО_DO"

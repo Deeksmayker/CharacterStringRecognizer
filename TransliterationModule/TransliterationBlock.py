@@ -1,3 +1,4 @@
+#Тут из папки и из файла мы импортируем уже класс, а не функцию
 from TransliterationModule.StringCharTypes import StringCharClasses
 
 #Блок транслитерации, первый в списке
