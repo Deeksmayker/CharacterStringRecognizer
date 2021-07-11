@@ -1,1 +1,1 @@
-while True do if Check12<>$1F then Kill(p1, p2, p3, p4);
+while false do if B*$a then p(i);
