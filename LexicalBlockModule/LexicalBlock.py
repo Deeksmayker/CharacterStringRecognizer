@@ -2,7 +2,7 @@ from LexicalBlockModule.InputLanguageCharClass import InputLanguageCharClass
 from TransliterationModule.StringCharTypes import StringCharClasses
 
 def LexicalBlock(tokenChain):
-    resultTokenChain = []  
+    resultTokenChain = []
     previousCharClass = tokenChain[0][1]
     currentToken = ""
 

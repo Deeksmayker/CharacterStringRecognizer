@@ -3,21 +3,21 @@ from KeywordIdentificationBlockModule.KeyWords import KeyWords
 from LexicalBlockModule.InputLanguageCharClass import InputLanguageCharClass
 
 def KeywordIdentification(tokenChain):
-    resultKeyWords = []
+    resultWordTypes = []
 
     for token in tokenChain:
         if token[1] != InputLanguageCharClass.identifer:
-            resultKeyWords.append(token[1])
+            resultWordTypes.append(token[1])
             continue
 
-        if token[0] == "while": resultKeyWords.append(KeyWords.keyWhile)
-        elif token[0] == "do": resultKeyWords.append(KeyWords.keyDo)
-        elif token[0] == "if": resultKeyWords.append(KeyWords.keyIf)
-        elif token[0] == "then": resultKeyWords.append(KeyWords.keyThen)
-        elif resultKeyWords[-1] == KeyWords.keyThen: resultKeyWords.append(KeyWords.keySubroutineCall)
-        elif resultKeyWords[-1] == InputLanguageCharClass.openBracket or resultKeyWords[-1] == InputLanguageCharClass.comma: resultKeyWords.append(KeyWords.keyParam)
-        else: resultKeyWords.append(token[1])
+        if token[0] == "while": resultWordTypes.append(KeyWords.keyWhile)
+        elif token[0] == "do": resultWordTypes.append(KeyWords.keyDo)
+        elif token[0] == "if": resultWordTypes.append(KeyWords.keyIf)
+        elif token[0] == "then": resultWordTypes.append(KeyWords.keyThen)
+        elif resultWordTypes[-1] == KeyWords.keyThen: resultWordTypes.append(KeyWords.keySubroutineCall)
+        elif resultWordTypes[-1] == InputLanguageCharClass.openBracket or resultWordTypes[-1] == InputLanguageCharClass.comma: resultWordTypes.append(KeyWords.keyParam)
+        else: resultWordTypes.append(token[1])
 
-    return resultKeyWords
+    return resultWordTypes
 
  

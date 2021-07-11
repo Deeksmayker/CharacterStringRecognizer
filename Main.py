@@ -11,6 +11,8 @@ lexical = LexicalBlock(transliteration)
 keyWords = KeywordIdentification(lexical)
 result = SyntaxBlock(keyWords)
 
+output.write(result)
+
 print("Блок транслитерации - ", transliteration, "\n")
 print("Лексический блок - ", lexical, "\n")
 print("Идентефикация ключевых слов - ", keyWords, "\n")
