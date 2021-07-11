@@ -1,7 +1,7 @@
 from TransliterationModule.StringCharTypes import StringCharClasses
 
 class InputLanguageCharClass:
-    identifer = "ИДЕНТЕФИКАТОР"
+    identifer = "ИДЕНТИФИКАТОР"
     begin = "НАЧ"
     keyWord = "КЛСЛОВО"
     name = "ИМЯ"
@@ -11,8 +11,11 @@ class InputLanguageCharClass:
     logical = "ЛОГКОНСТ"
     semicolon = "ТЧКЗПТ"
     comparison = "ОПЕРАТОР СРАВНЕНИЯ"
-    bracket = "СКОБКА"
+    openBracket = "ОТКРЫВАЮЩАЯ СКОБКА"
+    closeBracket = "ЗАКРЫВАЮЩАЯ СКОБКА"
     hexadecimalConstant = "ШЕСНАДЦАТИРИЧНАЯ КОНСТАНТА"
+    operator = "ОПЕРАТОР"
+    comma = "ЗАПЯТАЯ"
     error = "Е"
     space1 = "ПРОБЕЛ1"
     space2 = "ПРОБЕЛ2"
@@ -39,10 +42,11 @@ class InputLanguageCharClass:
         if tokenName.isnumeric(): return InputLanguageCharClass.integer
         if tokenName[0] == '<' or tokenName[0] == '>': return InputLanguageCharClass.comparison
         if tokenName.lower() == "true" or tokenName.lower() == "false": return InputLanguageCharClass.logical
-        if tokenName == ')' or tokenName == '(':return InputLanguageCharClass.bracket
-        if tokenName[0].isalpha(): return InputLanguageCharClass.identifer
+        if tokenName == '(': return InputLanguageCharClass.openBracket
+        if tokenName == ')': return InputLanguageCharClass.closeBracket
         if StringCharClasses.RecognizeCharacter(tokenName[0]) == StringCharClasses.hexadecimal: return InputLanguageCharClass.hexadecimalConstant
-
+        if tokenName == ',': return InputLanguageCharClass.comma
+        if tokenName[0].isalpha(): return InputLanguageCharClass.identifer
 
         return InputLanguageCharClass.error
 

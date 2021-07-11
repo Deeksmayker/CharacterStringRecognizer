@@ -8,7 +8,8 @@ class StringCharClasses:
     semicolon = "тчкзпт"
     sign = "знак"
     error = "ошибка"
-    bracket = "скобка"
+    openBracket = "открывающая скобка"
+    closeBracket = "закрывающая скобка"
     squareBracket = "квадратная скобка"
     more = "больше"
     less = "меньше"
@@ -23,7 +24,8 @@ class StringCharClasses:
         if char.isalpha() and re.search(r'[a-zA-Z]', char): return StringCharClasses.letter
         if char.isnumeric(): return StringCharClasses.digital
         if char == '+' or char == '-': return StringCharClasses.sign
-        if char == '(' or char == ')': return StringCharClasses.bracket
+        if char == '(': return StringCharClasses.openBracket
+        if char == ')': return StringCharClasses.closeBracket
         if char == '[' or char == ']': return StringCharClasses.squareBracket
         if char == '>': return StringCharClasses.more
         if char == '<': return StringCharClasses.less
