@@ -4,7 +4,6 @@ class InputLanguageCharClass:
     identifer = "ИДЕНТИФИКАТОР"
     begin = "НАЧ"
     keyWord = "КЛСЛОВО"
-    name = "ИМЯ"
     equal = "РАВНО"
     sign = "ЗНАК"
     integer = "ЦЕЛОЕ"
@@ -17,13 +16,6 @@ class InputLanguageCharClass:
     operator = "ОПЕРАТОР"
     comma = "ЗАПЯТАЯ"
     error = "Е"
-    space1 = "ПРОБЕЛ1"
-    space2 = "ПРОБЕЛ2"
-    space3 = "ПРОБЕЛ3"
-    space4 = "ПРОБЕЛ4"
-    space51 = "ПРОБЕЛ51"
-    space52 = "ПРОБЛЕ52"
-    space6 = "ПРОБЕЛ6"
 
     def IsPossibleTokenName(charClass, previousCharClass, resultTokenChain, currentToken):
         tokenArrayLength = len(resultTokenChain)
