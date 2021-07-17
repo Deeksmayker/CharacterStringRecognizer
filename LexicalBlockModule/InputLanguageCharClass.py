@@ -3,17 +3,12 @@ from TransliterationModule.StringCharTypes import StringCharClasses
 class InputLanguageCharClass:
     identifer = "ИДЕНТИФИКАТОР"
     begin = "НАЧ"
-    keyWord = "КЛСЛОВО"
-    equal = "РАВНО"
-    sign = "ЗНАК"
-    integer = "ЦЕЛОЕ"
     logical = "ЛОГКОНСТ"
     semicolon = "ТЧКЗПТ"
     comparison = "ОПЕРАТОР СРАВНЕНИЯ"
     openBracket = "ОТКРЫВАЮЩАЯ СКОБКА"
     closeBracket = "ЗАКРЫВАЮЩАЯ СКОБКА"
     hexadecimalConstant = "ШЕСНАДЦАТИРИЧНАЯ КОНСТАНТА"
-    operator = "ОПЕРАТОР"
     comma = "ЗАПЯТАЯ"
     error = "Е"
 
@@ -29,9 +24,6 @@ class InputLanguageCharClass:
 
     def RecognizeLexicalTokenClass(tokenName):
         if StringCharClasses.RecognizeCharacter(tokenName) == StringCharClasses.semicolon: return InputLanguageCharClass.semicolon
-        if tokenName == StringCharClasses.equal: return InputLanguageCharClass.equal
-        if tokenName == StringCharClasses.sign: return InputLanguageCharClass.sign
-        if tokenName.isnumeric(): return InputLanguageCharClass.integer
         if tokenName[0] == '<' or tokenName[0] == '>': return InputLanguageCharClass.comparison
         if tokenName.lower() == "true" or tokenName.lower() == "false": return InputLanguageCharClass.logical
         if tokenName == '(': return InputLanguageCharClass.openBracket
