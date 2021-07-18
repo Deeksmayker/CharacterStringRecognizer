@@ -1,1 +1,1 @@
-while fawlse do if B<$C then Greed(i);
+while true do if MyVar<>$FFFF then Snooze(param);   

@@ -6,7 +6,12 @@ from SyntaxBlockModule.AnalysisResults import AnalysisResults
 def KeywordIdentification(tokenChain):
     resultWordTypes = []
 
+    logicalConstans = ["true", "false"]
+
     for token in tokenChain:
+        if token[1] == InputLanguageCharClass.logical and not(token[0].lower() in logicalConstans):
+            AnalysisResults.PrintOnWrongLine()
+
         if token[1] != InputLanguageCharClass.identifer:
             resultWordTypes.append(token[1])
             continue
