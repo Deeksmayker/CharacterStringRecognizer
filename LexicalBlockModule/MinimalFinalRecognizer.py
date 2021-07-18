@@ -9,9 +9,12 @@ def StateSwitcher(lexemeClass, previousLexemeClass, states):
     or currentState == FinalRecognizerStates.begin):
         states.SwitchToNextState()
 
-    if ((currentState == FinalRecognizerStates.space5)
-    and previousLexemeClass != StringCharClasses.space):
-        states.SwitchToNextState()
+    if ((currentState == FinalRecognizerStates.name)
+    and (lexemeClass == StringCharClasses.more or lexemeClass == StringCharClasses.less)):
+        states.SwitchToState(states.comparison)
+
+    if (currentState == FinalRecognizerStates.comparison and lexemeClass == StringCharClasses.hexadecimal):
+        states.SwitchToState(states.hexadecimal)
 
     if currentState == FinalRecognizerStates.keyWordSubroutineCall and lexemeClass == StringCharClasses.openBracket:
         states.SwitchToNextState()
@@ -20,7 +23,7 @@ def StateSwitcher(lexemeClass, previousLexemeClass, states):
     if currentState == FinalRecognizerStates.space12:
         states.SwitchToState(states.param)
 
-    if currentState == FinalRecognizerStates.space11 and lexemeClass == StringCharClasses.closeBracket:
+    if ((currentState == FinalRecognizerStates.space11 or currentState == FinalRecognizerStates.param) and lexemeClass == StringCharClasses.closeBracket):
         states.SwitchToState(states.closeBracket)
 
 

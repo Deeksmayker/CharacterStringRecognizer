@@ -1,6 +1,7 @@
 from LexicalBlockModule.InputLanguageCharClass import InputLanguageCharClass
 from KeywordIdentificationBlockModule.KeyWords import KeyWords
 from LexicalBlockModule.InputLanguageCharClass import InputLanguageCharClass
+from SyntaxBlockModule.AnalysisResults import AnalysisResults
 
 def KeywordIdentification(tokenChain):
     resultWordTypes = []
