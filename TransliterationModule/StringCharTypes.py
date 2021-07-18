@@ -29,3 +29,6 @@ class StringCharClasses:
         if char == '=': return StringCharClasses.equal
         
         return StringCharClasses.error
+
+    def IsLetterHexadecimal(char):
+        return re.search(r'[a-fA-F]', char)

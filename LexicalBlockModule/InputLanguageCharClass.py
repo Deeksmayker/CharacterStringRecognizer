@@ -26,6 +26,7 @@ class InputLanguageCharClass:
         or (StringCharClasses.RecognizeCharacter(currentToken[0]) == StringCharClasses.hexadecimal
         and charClass != StringCharClasses.space and previousCharClass != StringCharClasses.space)
         or (currentToken[0].isalpha() and charClass == StringCharClasses.digital and charClass != StringCharClasses.space and previousCharClass != StringCharClasses.space))
+        
 
     def RecognizeLexicalTokenClass(tokenName):
         if StringCharClasses.RecognizeCharacter(tokenName) == StringCharClasses.semicolon: return InputLanguageCharClass.semicolon

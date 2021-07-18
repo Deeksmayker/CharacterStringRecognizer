@@ -33,7 +33,7 @@ class FinalRecognizerStates:
     space15 = "ПРОБЕЛ15"
     error = "E"
 
-    states =[begin ,
+    states = [begin ,
     keyWordWhile,
     space1 ,
     logicalConst ,
@@ -70,3 +70,6 @@ class FinalRecognizerStates:
 
     def SwitchToNextState():
         FinalRecognizerStates.currentIndex += 1
+
+    def SwitchToState(stateName):
+        FinalRecognizerStates.currentIndex = FinalRecognizerStates.states.index(stateName)
