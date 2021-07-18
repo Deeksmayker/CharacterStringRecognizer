@@ -3,30 +3,32 @@ from LexicalBlockModule.FinalRecoginzerStates import FinalRecognizerStates
 from LexicalBlockModule.InputLanguageCharClass import InputLanguageCharClass
 from SyntaxBlockModule.AnalysisResults import AnalysisResults
 
+#Этот метод проводит некоторые проверки, из которых мы можем понять как и куда нам передвинуть состояние распознавателя.
+#Делается это с помощью методов внутри класса с состояниями, а сюда мы посылаем лишь экземпляр этого класса(states)
 def StateSwitcher(lexemeClass, previousLexemeClass, states):
     currentState = states.GetCurrentState()
-    if (lexemeClass != previousLexemeClass and (currentState != FinalRecognizerStates.hexadecimal or lexemeClass == StringCharClasses.space)
-    or currentState == FinalRecognizerStates.begin):
+    if (lexemeClass != previousLexemeClass and (currentState != states.hexadecimal or lexemeClass == StringCharClasses.space)
+    or currentState == states.begin):
         states.SwitchToNextState()
 
-    if ((currentState == FinalRecognizerStates.name)
+    if ((currentState == states.name)
     and (lexemeClass == StringCharClasses.more or lexemeClass == StringCharClasses.less)):
         states.SwitchToState(states.comparison)
 
-    if (currentState == FinalRecognizerStates.comparison and lexemeClass == StringCharClasses.hexadecimal):
+    if (currentState == states.comparison and lexemeClass == StringCharClasses.hexadecimal):
         states.SwitchToState(states.hexadecimal)
 
-    if currentState == FinalRecognizerStates.keyWordSubroutineCall and lexemeClass == StringCharClasses.openBracket:
+    if currentState == states.keyWordSubroutineCall and lexemeClass == StringCharClasses.openBracket:
         states.SwitchToNextState()
         states.SwitchToNextState()
 
-    if currentState == FinalRecognizerStates.space12:
+    if currentState == states.space12:
         states.SwitchToState(states.param)
 
-    if ((currentState == FinalRecognizerStates.space11 or currentState == FinalRecognizerStates.param) and lexemeClass == StringCharClasses.closeBracket):
+    if ((currentState == states.space11 or currentState == states.param) and lexemeClass == StringCharClasses.closeBracket):
         states.SwitchToState(states.closeBracket)
 
-
+#Сам конечный распознаватель. Тут все в принципе по таблице, приложенной в отчете.
 def FinalRecognizer(symbols, classes, lexeme, states):
     currentState = states.GetCurrentState()
     

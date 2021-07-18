@@ -12,6 +12,7 @@ def KeywordIdentification(tokenChain):
     logicalConstans = ["true", "false"]
 
     for token in tokenChain:
+        #Здесь проверяем что логическая константа напечатана верно, с помощью проверки содержится ли введенная логическая константа в массиве разрешенных
         if token[1] == InputLanguageCharClass.logical and not(token[0].lower() in logicalConstans):
             AnalysisResults.PrintOnWrongLine()
 

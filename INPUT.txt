@@ -1,1 +1,1 @@
-while true do if MyVar<>$FFFF then Snooze(param);   
+while true do if MyVar<>$FFFF then Snooze(param);
