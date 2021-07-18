@@ -3,14 +3,12 @@ import re
 class StringCharClasses:
     letter = "буква"
     space = "пробел"
-    equal = "равно"
     digital = "цифра"
     semicolon = "тчкзпт"
-    sign = "знак"
+    equal = "равно"
     error = "ошибка"
     openBracket = "открывающая скобка"
     closeBracket = "закрывающая скобка"
-    squareBracket = "квадратная скобка"
     more = "больше"
     less = "меньше"
     hexadecimal = "шестнадцатиричный знак"
@@ -20,16 +18,17 @@ class StringCharClasses:
     def RecognizeCharacter(char):
         if char == ' ': return StringCharClasses.space
         if char == ';': return StringCharClasses.semicolon
-        if char == '=': return StringCharClasses.equal
         if char.isalpha() and re.search(r'[a-zA-Z]', char): return StringCharClasses.letter
         if char.isnumeric(): return StringCharClasses.digital
-        if char == '+' or char == '-': return StringCharClasses.sign
         if char == '(': return StringCharClasses.openBracket
         if char == ')': return StringCharClasses.closeBracket
-        if char == '[' or char == ']': return StringCharClasses.squareBracket
         if char == '>': return StringCharClasses.more
         if char == '<': return StringCharClasses.less
         if char == '$': return StringCharClasses.hexadecimal
         if char == ',': return StringCharClasses.comma
+        if char == '=': return StringCharClasses.equal
         
         return StringCharClasses.error
+
+    def IsLetterHexadecimal(char):
+        return re.search(r'[a-fA-F]', char)

@@ -1,13 +1,20 @@
 #Также импортируем классы
 from LexicalBlockModule.InputLanguageCharClass import InputLanguageCharClass
 from KeywordIdentificationBlockModule.KeyWords import KeyWords
+from LexicalBlockModule.InputLanguageCharClass import InputLanguageCharClass
+from SyntaxBlockModule.AnalysisResults import AnalysisResults
 
 def KeywordIdentification(tokenChain):
     resultWordsClasses = []
 
     #тут нас интересуют только идентефикаторы, из них мы хотим получить полноценные ключевые слова, поэтому в начале каждой итерации проверяем является ли токен
     #идентификатором, если нет то просто добавляем его в итоговый массив и идем на следующую итерацию
+    logicalConstans = ["true", "false"]
+
     for token in tokenChain:
+        if token[1] == InputLanguageCharClass.logical and not(token[0].lower() in logicalConstans):
+            AnalysisResults.PrintOnWrongLine()
+
         if token[1] != InputLanguageCharClass.identifer:
             resultWordsClasses.append(token[1])
             continue

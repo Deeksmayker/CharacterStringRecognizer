@@ -1,1 +1,1 @@
-while True do if Check<>$1F then Kill(p1, p2, p3,);
+while true do if MyVar<>$FFFF then Snooze(param);   

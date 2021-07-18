@@ -4,7 +4,6 @@ class InputLanguageCharClass:
     identifer = "ИДЕНТИФИКАТОР"
     begin = "НАЧ"
     keyWord = "КЛСЛОВО"
-    name = "ИМЯ"
     equal = "РАВНО"
     sign = "ЗНАК"
     integer = "ЦЕЛОЕ"
@@ -17,13 +16,6 @@ class InputLanguageCharClass:
     operator = "ОПЕРАТОР"
     comma = "ЗАПЯТАЯ"
     error = "Е"
-    space1 = "ПРОБЕЛ1"
-    space2 = "ПРОБЕЛ2"
-    space3 = "ПРОБЕЛ3"
-    space4 = "ПРОБЕЛ4"
-    space51 = "ПРОБЕЛ51"
-    space52 = "ПРОБЛЕ52"
-    space6 = "ПРОБЕЛ6"
 
     #Ну тут проверяется много каких случаев, писал под пивом в 3 ночи, не судите строго
     def IsPossibleTokenName(charClass, previousCharClass, resultTokenChain, currentToken):
@@ -35,6 +27,7 @@ class InputLanguageCharClass:
         or (StringCharClasses.RecognizeCharacter(currentToken[0]) == StringCharClasses.hexadecimal
         and charClass != StringCharClasses.space and previousCharClass != StringCharClasses.space)
         or (currentToken[0].isalpha() and charClass == StringCharClasses.digital and charClass != StringCharClasses.space and previousCharClass != StringCharClasses.space))
+        
 
     #Ну тут всё просто, по большей части проверяем одиночные символы чтобы вывалить им классы. С помощью isnureric можем понять является ли это числом.
     #В конце если первый символ это буква(isalpha проверяет буква ли это) то ставим возвращем идентификатор, который потом уже будем превращать в ключевое слово
